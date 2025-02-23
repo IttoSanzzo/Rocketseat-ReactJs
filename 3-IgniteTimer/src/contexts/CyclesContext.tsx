@@ -1,5 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createContext, ReactNode, useState } from "react";
+import {
+	createContext,
+	ReactNode,
+	useEffect,
+	useReducer,
+	useState,
+} from "react";
 import {
 	useForm,
 	UseFormHandleSubmit,
@@ -7,6 +13,13 @@ import {
 	UseFormWatch,
 } from "react-hook-form";
 import * as zod from "zod";
+import { Cycle, cyclesReducer, CyclesState } from "../reducers/cycles/reducer";
+import {
+	addNewCycleAction,
+	interruptCurrentCycleAction,
+	markCurrentCycleAsFinishedAction,
+} from "../reducers/cycles/actions";
+import { differenceInSeconds } from "date-fns";
 
 const newCycleFormValidationSchema = zod.object({
 	task: zod.string().min(1, "Informe a tarefa"),
@@ -16,20 +29,10 @@ const newCycleFormValidationSchema = zod.object({
 		.max(60, "O intervalor precisa ser de no máximo 60 minutos"),
 });
 type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>;
-interface Cycle {
-	id: string;
-	task: string;
-	minutesAmount: number;
-	startDate: Date;
-	interruptedDate?: Date;
-	finishedDate?: Date;
-}
 interface CyclesContextData {
 	activeCycle: Cycle | undefined;
-	activeCycleId: string | null;
-	setActiveCycleId: React.Dispatch<React.SetStateAction<string | null>>;
-	cycles: Cycle[];
-	setCycles: React.Dispatch<React.SetStateAction<Cycle[]>>;
+	cyclesState: CyclesState;
+	dispatchToCyclesState: React.ActionDispatch<[action: any]>;
 	secondsPassedAmount: number;
 	setSecondsPassedAmount: React.Dispatch<React.SetStateAction<number>>;
 	handleCreateNewCycle: (data: NewCycleFormData) => void;
@@ -47,6 +50,7 @@ interface CyclesContextData {
 		any,
 		undefined
 	>;
+	markCurrentCycleAsFinished: () => void;
 }
 interface CyclesContextProviderProps {
 	children: ReactNode;
@@ -57,10 +61,31 @@ export const CyclesContext = createContext({} as CyclesContextData);
 export function CyclesContextProvider({
 	children,
 }: CyclesContextProviderProps) {
-	const [cycles, setCycles] = useState<Cycle[]>([]);
-	const [activeCycleId, setActiveCycleId] = useState<string | null>(null);
-	const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId);
-	const [secondsPassedAmount, setSecondsPassedAmount] = useState<number>(0);
+	const [cyclesState, dispatchToCyclesState] = useReducer(
+		cyclesReducer,
+		{
+			cycles: [],
+			activeCycleId: null,
+		},
+		(initialState) => {
+			const storageStateAsJSON = localStorage.getItem(
+				"@ignite-timer:cycles-state:1.0.0"
+			);
+			if (storageStateAsJSON) {
+				return JSON.parse(storageStateAsJSON);
+			}
+			return initialState;
+		}
+	);
+	const activeCycle = cyclesState.cycles.find(
+		(cycle) => cycle.id === cyclesState.activeCycleId
+	);
+	const [secondsPassedAmount, setSecondsPassedAmount] = useState<number>(() => {
+		if (activeCycle) {
+			return differenceInSeconds(new Date(), activeCycle.startDate);
+		}
+		return 0;
+	});
 	const newCycleForm = useForm<NewCycleFormData>({
 		resolver: zodResolver(newCycleFormValidationSchema),
 		defaultValues: {
@@ -76,30 +101,27 @@ export function CyclesContextProvider({
 			minutesAmount: data.minutesAmount,
 			startDate: new Date(),
 		};
-		setCycles((state) => [...state, newCycle]);
-		setActiveCycleId(newCycle.id);
+		dispatchToCyclesState(addNewCycleAction(newCycle));
 		setSecondsPassedAmount(0);
 		reset();
 	}
 	function handleInterruptCycle() {
-		setCycles(
-			cycles.map((cycle) => {
-				if (cycle.id === activeCycleId)
-					return { ...cycle, interruptedDate: new Date() };
-				return cycle;
-			})
-		);
-		setActiveCycleId(null);
+		dispatchToCyclesState(interruptCurrentCycleAction());
 	}
+	function markCurrentCycleAsFinished() {
+		dispatchToCyclesState(markCurrentCycleAsFinishedAction());
+	}
+	useEffect(() => {
+		const stateJson = JSON.stringify(cyclesState);
+		localStorage.setItem("@ignite-timer:cycles-state:1.0.0", stateJson);
+	}, [cyclesState]);
 
 	return (
 		<CyclesContext.Provider
 			value={{
 				activeCycle,
-				activeCycleId,
-				setActiveCycleId,
-				cycles,
-				setCycles,
+				cyclesState,
+				dispatchToCyclesState,
 				secondsPassedAmount,
 				setSecondsPassedAmount,
 				handleCreateNewCycle,
@@ -107,6 +129,7 @@ export function CyclesContextProvider({
 				handleSubmit,
 				watch,
 				newCycleForm,
+				markCurrentCycleAsFinished,
 			}}>
 			{children}
 		</CyclesContext.Provider>
