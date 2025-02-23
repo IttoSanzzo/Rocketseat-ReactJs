@@ -1,0 +1,68 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2025-02-23T05:47:25.286Z"
+    },
+    {
+      "id": 2,
+      "description": "Hamburger",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 50,
+      "createdAt": "2025-02-23T05:24:55.286Z"
+    },
+    {
+      "id": 3,
+      "description": "Coffee",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 19,
+      "createdAt": "2025-02-23T05:24:55.286Z"
+    },
+    {
+      "id": 42,
+      "price": 5,
+      "type": "outcome",
+      "category": "Alimento",
+      "description": "Banana",
+      "createdAt": "2025-02-23T09:02:42.071Z"
+    },
+    {
+      "price": 34,
+      "type": "income",
+      "category": "ga",
+      "description": "as",
+      "createdAt": "2025-02-23T09:04:04.190Z",
+      "id": 43
+    },
+    {
+      "price": 4312,
+      "type": "income",
+      "category": "ras",
+      "description": "yahoo",
+      "createdAt": "2025-02-23T09:07:08.328Z",
+      "id": 44
+    },
+    {
+      "price": 32,
+      "type": "income",
+      "category": "gsd",
+      "description": "das",
+      "createdAt": "2025-02-23T09:07:54.794Z",
+      "id": 45
+    },
+    {
+      "price": 35,
+      "type": "income",
+      "category": "fasf",
+      "description": "FAs",
+      "createdAt": "2025-02-23T09:10:23.193Z",
+      "id": 46
+    }
+  ]
+}
