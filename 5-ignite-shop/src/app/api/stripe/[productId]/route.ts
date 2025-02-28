@@ -29,6 +29,7 @@ export async function GET(req: NextRequest, { params }: GetParams) {
 				currency: "BRL",
 			}).format((price.unit_amount || 1000000) / 100),
 			description: product.description,
+			priceId: price.id,
 		};
 		return NextResponse.json(formattedProduct, { status: 200 });
 	} catch (error) {

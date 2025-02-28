@@ -4,6 +4,7 @@ import {
 	ProductContainer,
 	ProductDetails,
 } from "./styledComponents";
+import { BuyButton } from "./components/BuyButton";
 
 interface Product {
 	id: string;
@@ -11,6 +12,7 @@ interface Product {
 	imageUrl: string;
 	price: string;
 	description: string;
+	priceId: string;
 }
 interface ProductProps {
 	params: Promise<{ id: string }>;
@@ -42,9 +44,8 @@ export default async function Product({ params }: ProductProps) {
 			<ProductDetails>
 				<h1>{product.name}</h1>
 				<span>{product.price}</span>
-
 				<p>{product.description}</p>
-				<button>Comprar Agora</button>
+				<BuyButton priceId={product.priceId} />
 			</ProductDetails>
 		</ProductContainer>
 	);
