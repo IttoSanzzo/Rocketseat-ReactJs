@@ -3,6 +3,7 @@
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
+import Link from "next/link";
 import { Product, ProductsContainer } from "./styledComponents";
 
 export interface product {
@@ -26,20 +27,22 @@ export default function ProductsCarousel({ products }: productsCarouselProps) {
 			className="keen-slider">
 			{products.map((product) => {
 				return (
-					<Product
+					<Link
 						key={product.id}
-						className="keen-slider__slide">
-						<Image
-							src={product.imageUrl}
-							alt=""
-							width={520}
-							height={480}
-						/>
-						<footer>
-							<strong>{product.name}</strong>
-							<span>{product.price}</span>
-						</footer>
-					</Product>
+						href={`/product/${product.id}`}>
+						<Product className="keen-slider__slide">
+							<Image
+								src={product.imageUrl}
+								alt=""
+								width={520}
+								height={480}
+							/>
+							<footer>
+								<strong>{product.name}</strong>
+								<span>{product.price}</span>
+							</footer>
+						</Product>
+					</Link>
 				);
 			})}
 		</ProductsContainer>

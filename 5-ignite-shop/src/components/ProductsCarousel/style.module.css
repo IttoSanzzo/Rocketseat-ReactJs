@@ -17,11 +17,10 @@
 	justify-content: center;
 	overflow: hidden;
 
-	img {
+	& img {
 		object-fit: cover;
 	}
-
-	footer {
+	& footer {
 		position: absolute;
 		bottom: 0.25rem;
 		left: 0.25rem;
@@ -36,21 +35,19 @@
 		opacity: 0;
 		transition: all 0.2s ease-in-out;
 
-		strong {
+		& strong {
 			font-size: var(--ft-lg);
+			color: var(--gray-100);
 		}
 
-		span {
+		& span {
 			font-size: var(--ft-xl);
 			font-weight: bold;
 			color: var(--green-300);
 		}
 	}
-
-	&:hover {
-		footer {
-			transform: translateY(0%);
-			opacity: 1;
-		}
+	&:hover footer {
+		transform: translateY(0%);
+		opacity: 1;
 	}
 }
