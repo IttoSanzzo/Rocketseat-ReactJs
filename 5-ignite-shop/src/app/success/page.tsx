@@ -24,6 +24,7 @@ async function fetchStripeSuccessProps(sessionId: string) {
 
 export const metadata = {
 	title: "Sucesso | Ignite Shop",
+	robots: "noindex, nofollow",
 };
 
 export default async function Success({ searchParams }: SuccessProps) {
