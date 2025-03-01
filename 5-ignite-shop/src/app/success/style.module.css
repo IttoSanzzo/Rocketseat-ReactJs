@@ -1,0 +1,50 @@
+.successContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	height: 656px;
+
+	& h1 {
+		font-size: var(--ft-2xl);
+		color: var(--gray-100);
+	}
+
+	& p {
+		font-size: var(--ft-xl);
+		color: var(--gray-300);
+		max-width: 560px;
+		text-align: center;
+		margin-top: 2rem;
+		line-height: 1.4;
+	}
+
+	& a {
+		display: block;
+		margin-top: 5rem;
+		font-size: var(--ft-lg);
+		color: var(--green-500);
+		text-decoration: none;
+
+		&:hover {
+			color: var(--green-300);
+		}
+	}
+}
+.imageContainer {
+	width: 100%;
+	max-width: 130px;
+	height: 145px;
+	background: linear-gradient(180deg, #1ea483 0%, #7465d4 100%);
+	border-radius: 8px;
+	padding: 0.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 4rem;
+
+	& img {
+		object-fit: cover;
+	}
+}

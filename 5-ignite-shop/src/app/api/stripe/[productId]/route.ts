@@ -1,16 +1,10 @@
+import { stripe } from "@/app/lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 interface GetParams {
 	params: Promise<{ productId: string }>;
 }
-
-const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || "", {
-	apiVersion: "2025-02-24.acacia",
-	appInfo: {
-		name: "Ignite Shop",
-	},
-});
 
 export async function GET(req: NextRequest, { params }: GetParams) {
 	const { productId } = await params;

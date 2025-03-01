@@ -1,18 +1,13 @@
+import { stripe } from "@/app/lib/stripe";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || "", {
-	apiVersion: "2025-02-24.acacia",
-	appInfo: {
-		name: "Ignite Shop",
-	},
-});
-
 export async function POST(req: Request) {
 	try {
-		const priceId = "price_1QwcSlGXlhPL5Uisn0zkL5uF";
+		const body = await req.json();
+		const { priceId } = body;
 		const checkoutSession = await stripe.checkout.sessions.create({
-			success_url: `${process.env.NEXT_URL}/success`,
+			success_url: `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
 			cancel_url: `${process.env.NEXT_URL}/`,
 			mode: "payment",
 			line_items: [
