@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { ImageContainer, SuccessContainer } from "./styledComponents";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-// interface SuccessProps {
-// 	userName: string;
-// 	imageUrl: string;
-// 	productName: string;
-// }
+interface SessionProps {
+	userName: string;
+	imageUrl: string;
+	productName: string;
+}
 
 interface SuccessProps {
 	searchParams: Promise<{ session_id?: string }>;
@@ -21,23 +22,28 @@ async function fetchStripeSuccessProps(sessionId: string) {
 	return res.json();
 }
 
+export const metadata = {
+	title: "Sucesso | Ignite Shop",
+};
+
 export default async function Success({ searchParams }: SuccessProps) {
 	const sessionId = (await searchParams).session_id || "";
-	const successProps = await fetchStripeSuccessProps(sessionId);
+	if (sessionId === "") return notFound();
+	const sessionProps: SessionProps = await fetchStripeSuccessProps(sessionId);
 	return (
 		<SuccessContainer>
 			<h1>Compra Efetuada!</h1>
 			<ImageContainer>
 				<Image
-					src={successProps.imageUrl}
+					src={sessionProps.imageUrl}
 					alt=""
 					width={120}
 					height={110}
 				/>
 			</ImageContainer>
 			<p>
-				Uhuul! <strong>{successProps.userName}</strong>, sua{" "}
-				<strong>{successProps.productName}</strong> já está a caminho da sua
+				Uhuul! <strong>{sessionProps.userName}</strong>, sua{" "}
+				<strong>{sessionProps.productName}</strong> já está a caminho da sua
 				casa.
 			</p>
 			<Link href="/">Voltar ao catálogo</Link>

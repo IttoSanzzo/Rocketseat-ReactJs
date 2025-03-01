@@ -5,6 +5,7 @@ import {
 	ProductDetails,
 } from "./styledComponents";
 import { BuyButton } from "./components/BuyButton";
+import { cache } from "react";
 
 interface Product {
 	id: string;
@@ -18,14 +19,25 @@ interface ProductProps {
 	params: Promise<{ id: string }>;
 }
 
-const fetchStripeProduct = async (productId: string): Promise<Product> => {
-	const res = await fetch(`http://localhost:3000/api/stripe/${productId}`, {
-		next: {
-			revalidate: 60,
-		},
-	});
-	return res.json();
-};
+const fetchStripeProduct = cache(
+	async (productId: string): Promise<Product> => {
+		const res = await fetch(`http://localhost:3000/api/stripe/${productId}`, {
+			next: {
+				revalidate: 60,
+			},
+		});
+		return res.json();
+	}
+);
+
+export async function generateMetadata({ params }: ProductProps) {
+	const { id } = await params;
+	const product = await fetchStripeProduct(id);
+
+	return {
+		title: `${product.name} | Ignite Shop`,
+	};
+}
 
 export default async function Product({ params }: ProductProps) {
 	const { id } = await params;
