@@ -6,17 +6,23 @@
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"scripts": {
-		"build": "tsup src/index.ts --format esm, cjs --dts",
-		"dev": "tsup src/index.ts --format esm, cjs --dts --watch"
+		"build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+		"dev": "tsup src/index.tsx --format esm,cjs --dts --external react --watch"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
 	"type": "commonjs",
 	"devDependencies": {
-		"@ignite-ui/ts-config": "*",
 		"@ignite-ui/tokens": "*",
+		"@ignite-ui/ts-config": "*",
+		"@types/react": "^19.0.10",
+		"@types/react-dom": "^19.0.4",
+		"react": "^19.0.0",
 		"tsup": "^8.4.0",
 		"typescript": "^5.8.2"
+	},
+	"dependencies": {
+		"@stitches/react": "^1.2.8"
 	}
 }
