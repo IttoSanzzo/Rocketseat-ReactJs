@@ -1,0 +1,19 @@
+.sbdocs {
+	background-color: #4a4a4a !important;
+	color: white !important;
+}
+
+.sbdocs-wrapper {
+	background-color: #4a4a4a !important;
+	color: white !important;
+}
+
+.sbdocs li,
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3,
+.sbdocs h4,
+.sbdocs h5,
+.sbdocs h6 {
+	color: #ffffff !important;
+}
