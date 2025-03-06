@@ -1,3 +1,0 @@
-import{j as t,M as s}from"./index-DPxj7EYr.js";import{useMDXComponents as r}from"./index-CePRvBtH.js";import{T as m}from"./TokensGrid-CBE_2kkb.js";import{b as i}from"./index-DJqUIZ3o.js";import"./iframe-D7ffeUyf.js";import"./index-DmM0KDA7.js";import"./index-nLeaPAJ8.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";function e(n){const o={h1:"h1",...r(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(s,{title:"Tokens/Fonts"}),`
-`,t.jsx(o.h1,{id:"font",children:"Font"}),`
-`,t.jsx(m,{tokens:i})]})}function M(n={}){const{wrapper:o}={...r(),...n.components};return o?t.jsx(o,{...n,children:t.jsx(e,{...n})}):e(n)}export{M as default};
