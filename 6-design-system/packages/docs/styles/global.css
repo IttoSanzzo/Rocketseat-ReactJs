@@ -1,11 +1,15 @@
 .sbdocs {
-	background-color: #4a4a4a !important;
+	background-color: #2d2d2d !important;
 	color: white !important;
 }
 
 .sbdocs-wrapper {
-	background-color: #4a4a4a !important;
+	background-color: #2d2d2d !important;
 	color: white !important;
+}
+
+.sbdocs table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table) tr {
+	background-color: #2d2d2d !important;
 }
 
 .sbdocs li,
