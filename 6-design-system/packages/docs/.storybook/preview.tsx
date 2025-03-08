@@ -12,7 +12,7 @@ const preview: Preview = {
 		},
 		backgrounds: {
 			default: "gray",
-			values: [{ name: "gray", value: "#202024" }],
+			values: [{ name: "gray", value: "#292c2e" }],
 		},
 	},
 };

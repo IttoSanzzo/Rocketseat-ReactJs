@@ -1,15 +1,15 @@
 .sbdocs {
-	background-color: #2d2d2d !important;
+	background-color: #292c2e !important;
 	color: white !important;
 }
 
 .sbdocs-wrapper {
-	background-color: #2d2d2d !important;
+	background-color: #292c2e !important;
 	color: white !important;
 }
 
 .sbdocs table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table) tr {
-	background-color: #2d2d2d !important;
+	background-color: #292c2e !important;
 }
 
 .sbdocs li,
@@ -20,4 +20,20 @@
 .sbdocs h5,
 .sbdocs h6 {
 	color: #ffffff !important;
+}
+
+.docblock-argstable thead tr th span {
+	color: white !important;
+}
+
+.docblock-argstable-body tr td {
+	background-color: #aaa !important;
+}
+
+.sb-bar {
+	background-color: transparent !important;
+}
+
+.sb-anchor p {
+	color: white !important;
 }
