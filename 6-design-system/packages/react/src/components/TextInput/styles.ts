@@ -17,6 +17,7 @@ export const TextInputContainer = styled("div", {
 		cursor: "not-allowed",
 	},
 });
+TextInputContainer.displayName = "TextInputContainer";
 
 export const Prefix = styled("span", {
 	fontFamily: "$default",
@@ -24,6 +25,8 @@ export const Prefix = styled("span", {
 	color: "$gray400",
 	fontWeight: "$regular",
 });
+
+Prefix.displayName = "Prefix";
 
 export const Input = styled("input", {
 	fontFamily: "$default",
@@ -44,3 +47,5 @@ export const Input = styled("input", {
 		color: "$gray400",
 	},
 });
+
+Input.displayName = "Input";

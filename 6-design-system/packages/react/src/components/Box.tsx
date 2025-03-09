@@ -8,3 +8,5 @@ export const Box = styled("div", {
 });
 
 export interface BoxProps {}
+
+Box.displayName = "Box";

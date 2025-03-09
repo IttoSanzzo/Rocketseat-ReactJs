@@ -82,3 +82,5 @@ export interface ButtonProps extends ComponentProps<typeof Button> {
 	children: ReactNode;
 	disabled: true | false;
 }
+
+Button.displayName = "Button";

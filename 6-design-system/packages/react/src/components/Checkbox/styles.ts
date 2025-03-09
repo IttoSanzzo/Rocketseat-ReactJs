@@ -25,6 +25,8 @@ export const CheckboxContainer = styled(Checkbox.Root, {
 	},
 });
 
+CheckboxContainer.displayName = "CheckboxContainer";
+
 const slideIn = keyframes({
 	from: {
 		transform: "translateY(-100%)",
@@ -54,3 +56,5 @@ export const CheckboxIndicator = styled(Checkbox.Indicator, {
 		animation: `${slideOut} 200ms ease-out`,
 	},
 });
+
+CheckboxIndicator.displayName = "CheckboxIndicator";

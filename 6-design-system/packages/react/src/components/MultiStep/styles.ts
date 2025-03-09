@@ -11,12 +11,16 @@ export const Label = styled(Text, {
 	},
 });
 
+Label.displayName = "Label";
+
 export const Steps = styled("div", {
 	marginTop: "$1",
 	gridTemplateColumns: "repeat(var(--steps-size), 1fr)",
 	display: "grid",
 	gap: "$2",
 });
+
+Steps.displayName = "Steps";
 
 export const Step = styled("div", {
 	height: "$1",
@@ -31,3 +35,5 @@ export const Step = styled("div", {
 		},
 	},
 });
+
+Step.displayName = "Step";

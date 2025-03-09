@@ -10,5 +10,8 @@
 	"devDependencies": {
 		"turbo": "^2.4.4"
 	},
-	"packageManager": "npm@11.1.0"
+	"packageManager": "npm@11.1.0",
+	"dependencies": {
+		"@storybook/addon-a11y": "^8.6.4"
+	}
 }

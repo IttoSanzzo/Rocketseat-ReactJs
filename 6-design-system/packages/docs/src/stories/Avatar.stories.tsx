@@ -7,6 +7,13 @@ export default {
 	args: {
 		src: "https://github.com/ittosanzzo.png",
 	},
+	argTypes: {
+		src: {
+			control: {
+				type: "text",
+			},
+		},
+	},
 } as Meta<AvatarProps>;
 
 type Story = StoryObj<AvatarProps>;
