@@ -13,13 +13,14 @@ const config: StorybookConfig = {
 	stories: ["../src/pages/**/*.mdx", "../src/stories/**/*.stories.tsx"],
 
 	addons: [
-		getAbsolutePath("@storybook/addon-essentials"),
-		getAbsolutePath("@storybook/addon-onboarding"),
-		getAbsolutePath("@chromatic-com/storybook"),
-		getAbsolutePath("@storybook/experimental-addon-test"),
-		getAbsolutePath("@storybook/addon-mdx-gfm"),
-		getAbsolutePath("@storybook/addon-a11y"),
-	],
+        getAbsolutePath("@storybook/addon-essentials"),
+        getAbsolutePath("@storybook/addon-onboarding"),
+        getAbsolutePath("@chromatic-com/storybook"),
+        getAbsolutePath("@storybook/experimental-addon-test"),
+        getAbsolutePath("@storybook/addon-mdx-gfm"),
+        getAbsolutePath("@storybook/addon-a11y"),
+        getAbsolutePath("@storybook/addon-mdx-gfm")
+    ],
 
 	framework: {
 		name: getAbsolutePath("@storybook/react-vite"),
@@ -37,8 +38,6 @@ const config: StorybookConfig = {
 		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 	`,
 
-	docs: {
-		autodocs: true,
-	},
+	docs: {},
 };
 export default config;

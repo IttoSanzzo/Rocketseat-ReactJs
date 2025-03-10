@@ -1,0 +1,23 @@
+.form {
+	margin-top: var(--sp-4);
+	padding: var(--sp-4);
+
+	& div {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: var(--sp-2);
+
+		@media (max-width: 600px) {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+.formAnnotation {
+	margin-top: var(--sp-2);
+	padding: 0 var(--sp-4);
+
+	& > p {
+		color: var(--cl-gray-400);
+	}
+}

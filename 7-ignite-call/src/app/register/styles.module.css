@@ -1,0 +1,35 @@
+.registerContainer {
+	max-width: 572;
+	margin: var(--sp-20) auto var(--sp-4);
+	padding: 0 var(--sp-4);
+}
+.header {
+	padding: 0 var(--sp-6);
+
+	& > heading {
+		line-height: var(--lh-base);
+	}
+
+	& > p {
+		color: var(--cl-gray-200);
+		margin-bottom: var(--sp-6);
+	}
+}
+.form {
+	margin-top: var(--sp-6);
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-4);
+
+	& div label {
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-2);
+	}
+}
+
+.formError {
+	& p {
+		color: var(--cl-red);
+	}
+}

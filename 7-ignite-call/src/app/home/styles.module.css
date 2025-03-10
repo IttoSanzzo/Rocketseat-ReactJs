@@ -1,0 +1,31 @@
+.homeContainer {
+	max-width: calc(100vw - (100vw - 1160px) / 2);
+	height: 100vh;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: var(--sp-20);
+}
+.hero {
+	max-width: 480px;
+	padding: 0 var(--sp-10);
+
+	& > h1 {
+		@media (max-width: 600px) {
+			font-size: var(--fs-6xl);
+		}
+	}
+
+	& > p {
+		margin-top: var(--sp-2);
+		color: var(--cl-gray-200);
+	}
+}
+.preview {
+	padding-right: var(--sp-8);
+	overflow: hidden;
+
+	@media (max-width: 600px) {
+		display: none;
+	}
+}
