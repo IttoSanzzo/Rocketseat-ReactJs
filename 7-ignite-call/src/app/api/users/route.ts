@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { setCookie } from "nookies";
 
 export async function POST(req: Request) {
 	if (req.method !== "POST") return NextResponse.json({ status: 405 });
