@@ -1,0 +1,39 @@
+.connectCalendarContainer {
+	max-width: 572;
+	margin: var(--sp-20) auto var(--sp-4);
+	padding: 0 var(--sp-4);
+}
+.header {
+	padding: 0 var(--sp-6);
+
+	& > heading {
+		line-height: var(--lh-base);
+	}
+
+	& > p {
+		color: var(--cl-gray-200);
+		margin-bottom: var(--sp-6);
+	}
+}
+.connectBox {
+	margin-top: var(--sp-6);
+	& > div {
+		display: flex;
+		flex-direction: column;
+	}
+}
+.connectItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid var(--cl-gray-600);
+	padding: var(--sp-4) var(--sp-6);
+	border-radius: var(--rd-md);
+	margin-bottom: var(--sp-2);
+}
+.authError {
+	margin-bottom: var(--sp-2);
+	& p {
+		color: var(--cl-red);
+	}
+}

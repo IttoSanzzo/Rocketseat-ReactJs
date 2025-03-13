@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { App } from "./_app";
 import "@/styles/global.css";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
 	title: "Ignite Call",
-	icons: "favicon.svg",
+	icons: "favicon.png",
 };
 
 export default function RootLayout({
