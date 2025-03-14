@@ -1,0 +1,30 @@
+.timePickerContainer {
+	box-sizing: border-box;
+	background-color: var(--cl-gray-900);
+	border: 2px solid var(--cl-gray-900);
+	border-radius: var(--rd-sm);
+	display: flex;
+	align-items: center;
+	padding: var(--sp-2) var(--sp-3);
+	cursor: text;
+	& input {
+		background: transparent;
+		max-width: var(--sp-4);
+		border: 0;
+		font-family: var(--ft-default);
+		font-size: var(--fs-sm);
+		color: var(--cl-white);
+		-moz-appearance: textfield;
+		appearance: textField;
+		text-align: right;
+	}
+
+	& p {
+		font-family: var(--ft-default);
+		font-size: var(--fs-sm);
+		color: var(--cl-white);
+	}
+	& :disabled {
+		opacity: 0.5;
+	}
+}

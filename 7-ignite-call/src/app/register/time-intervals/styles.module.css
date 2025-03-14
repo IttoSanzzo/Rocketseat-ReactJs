@@ -1,0 +1,55 @@
+.timeIntervalsContainer {
+	max-width: 572;
+	margin: var(--sp-20) auto var(--sp-4);
+	padding: 0 var(--sp-4);
+}
+.header {
+	padding: 0 var(--sp-6);
+
+	& > heading {
+		line-height: var(--lh-base);
+	}
+
+	& > p {
+		color: var(--cl-gray-200);
+		margin-bottom: var(--sp-6);
+	}
+}
+.intervalBox {
+	margin-top: var(--sp-6);
+	& > div {
+		display: flex;
+		flex-direction: column;
+	}
+}
+.intervalsContainer {
+	border: 1px solid var(--cl-gray-600);
+	border-radius: var(--rd-md);
+	margin-bottom: var(--sp-4);
+}
+.intervalItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--sp-3) var(--sp-4);
+
+	& + & {
+		border-top: 1px solid var(--cl-gray-600);
+	}
+}
+.intervalDay {
+	display: flex;
+	align-items: center;
+	gap: var(--sp-3);
+}
+.intervalInput {
+	display: flex;
+	align-items: center;
+	gap: var(--sp-2);
+}
+.formError {
+	margin-bottom: var(--sp-4);
+	& p {
+		color: var(--cl-red);
+	}
+}

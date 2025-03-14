@@ -13,7 +13,7 @@ import { Button } from "@/components/DesignSystem/Button";
 import { Heading } from "@/components/DesignSystem/Heading";
 import { MultiStep } from "@/components/DesignSystem/MultiStep";
 import { ArrowRight, Check } from "phosphor-react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
 async function handleConnectCalendar() {

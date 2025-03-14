@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
 	title: "Ignite Call",
-	icons: "favicon.png",
+	icons: "favicon.svg",
 };
 
 export default function RootLayout({

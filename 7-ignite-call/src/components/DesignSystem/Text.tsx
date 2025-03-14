@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import * as DesignSystem from "@ignite-ui/react";
 
 interface TextProps extends DesignSystem.TextProps {
@@ -19,6 +19,7 @@ interface TextProps extends DesignSystem.TextProps {
 		| "7xl"
 		| "8xl"
 		| "9xl";
+	style?: CSSProperties;
 }
 
 export const Text = ({ children, ...props }: TextProps) => {
