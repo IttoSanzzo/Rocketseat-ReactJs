@@ -95,6 +95,8 @@ export default function Register() {
 								<Text size="sm">{errors.username.message}</Text>
 							</FormError>
 						)}
+					</label>
+					<label>
 						<Text size="sm">Nome Completo</Text>
 						<TextInput
 							placeholder="Seu nome"
@@ -105,14 +107,14 @@ export default function Register() {
 								<Text size="sm">{errors.name.message}</Text>
 							</FormError>
 						)}
-
-						<Button
-							type="submit"
-							disabled={isSubmitting}>
-							Próximo Passo
-							<ArrowRight />
-						</Button>
 					</label>
+
+					<Button
+						type="submit"
+						disabled={isSubmitting}>
+						Próximo Passo
+						<ArrowRight />
+					</Button>
 				</Box>
 			</Form>
 		</RegisterContainer>

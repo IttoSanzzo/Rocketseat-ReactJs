@@ -1,0 +1,34 @@
+.updateProfileContainer {
+	max-width: 572;
+	margin: var(--sp-20) auto var(--sp-4);
+	padding: 0 var(--sp-4);
+}
+.formAnnotation {
+	color: var(--cl-gray-200);
+}
+.header {
+	padding: 0 var(--sp-6);
+
+	& > heading {
+		line-height: var(--lh-base);
+	}
+
+	& > p {
+		color: var(--cl-gray-200);
+		margin-bottom: var(--sp-6);
+	}
+}
+.profileBox {
+	margin-top: var(--sp-6);
+	& div {
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-4);
+
+		& label {
+			display: flex;
+			flex-direction: column;
+			gap: var(--sp-2);
+		}
+	}
+}

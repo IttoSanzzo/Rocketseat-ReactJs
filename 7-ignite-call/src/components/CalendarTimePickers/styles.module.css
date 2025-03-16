@@ -1,0 +1,56 @@
+.calendarTimePickersContainer {
+	border-left: 1px solid var(--cl-gray-600);
+	padding: var(--sp-6) var(--sp-6) 0;
+	overflow-y: scroll;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 280;
+}
+.calendarTimePickersHeader {
+	& > p {
+		font-weight: var(--fw-medium);
+		span {
+			color: var(--cl-gray-200);
+		}
+	}
+}
+.calendarTimePickersList {
+	margin-top: var(--sp-3);
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--sp-2);
+
+	@media (max-width: 900px) {
+		grid-template-columns: 2fr;
+	}
+}
+.calendarTimePickersItem {
+	border: 0;
+	background-color: var(--cl-gray-600);
+	padding: var(--sp-2) 0;
+	cursor: pointer;
+	color: var(--cl-gray-100);
+	border-radius: var(--rd-sm);
+	font-size: var(--fs-sm);
+	line-height: var(--lh-base);
+
+	&:last-child {
+		margin-bottom: var(--sp-6);
+	}
+
+	&:disabled {
+		background: none;
+		cursor: default;
+		opacity: 0.4;
+	}
+
+	&:not(:disabled):hover {
+		background-color: var(--cl-gray-500);
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 2px var(--cl-gray-100);
+	}
+}

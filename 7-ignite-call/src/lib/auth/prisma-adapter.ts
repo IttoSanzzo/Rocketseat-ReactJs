@@ -59,6 +59,7 @@ export async function PrismaAdapter(
 				email: prismaUser.email!,
 				avatarUrl: prismaUser.avatarUrl!,
 				emailVerified: null,
+				bio: prismaUser.bio,
 			};
 		},
 		async getUser(id) {
@@ -73,6 +74,7 @@ export async function PrismaAdapter(
 				email: user.email!,
 				emailVerified: null,
 				avatarUrl: user.avatarUrl!,
+				bio: user.bio,
 			};
 		},
 		async getUserByAccount({ providerAccountId, provider }) {
@@ -101,6 +103,7 @@ export async function PrismaAdapter(
 				id: user.id,
 				name: user.name,
 				username: user.username,
+				bio: user.bio,
 			};
 		},
 		async getUserByEmail(email) {
@@ -115,6 +118,7 @@ export async function PrismaAdapter(
 				email: user.email!,
 				emailVerified: null,
 				avatarUrl: user.avatarUrl!,
+				bio: user.bio,
 			};
 		},
 		async updateUser(user) {
@@ -207,6 +211,7 @@ export async function PrismaAdapter(
 					email: user.email!,
 					emailVerified: null,
 					avatarUrl: user.avatarUrl!,
+					bio: user.bio,
 				},
 			};
 		},

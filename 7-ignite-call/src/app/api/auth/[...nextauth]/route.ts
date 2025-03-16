@@ -1,5 +1,4 @@
 import { PrismaAdapter } from "@/lib/auth/prisma-adapter";
-import { profile } from "console";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import { RequestCookies } from "next/dist/server/web/spec-extension/cookies";

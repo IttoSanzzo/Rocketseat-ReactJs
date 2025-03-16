@@ -1,0 +1,48 @@
+.confirmStepContainer {
+	max-width: 540;
+	margin: var(--sp-6) auto 0;
+
+	& > div {
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-4);
+
+		& label {
+			display: flex;
+			flex-direction: column;
+			gap: var(--sp-2);
+		}
+	}
+}
+.formHeader {
+	display: flex;
+	align-items: center;
+	gap: var(--sp-4);
+
+	padding-bottom: var(--sp-6);
+	margin-bottom: var(--sp-2);
+	border-bottom: 1px solid var(--cl-gray-600);
+
+	& > p {
+		display: flex;
+		align-items: center;
+		gap: var(--sp-2);
+
+		& svg {
+			color: var(--cl-gray-200);
+			width: var(--sp-5);
+			height: var(--sp-5);
+		}
+	}
+}
+.formError {
+	& > p {
+		color: var(--cl-red);
+	}
+}
+.formActions {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--sp-2);
+	margin-top: var(--sp-2);
+}

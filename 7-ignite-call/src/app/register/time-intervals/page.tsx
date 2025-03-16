@@ -23,6 +23,7 @@ import { Button } from "@/components/DesignSystem/Button";
 import { ArrowRight } from "phosphor-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/lib/axios";
+import { useRouter } from "next/navigation";
 
 const timeIntervalsFormSchema = z.object(
 	{
@@ -96,6 +97,8 @@ type TimeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>;
 type TimeIntervalsFormOutput = z.output<typeof timeIntervalsFormSchema>;
 
 export default function TimeIntervals() {
+	const router = useRouter();
+
 	const {
 		register,
 		handleSubmit,
@@ -129,8 +132,9 @@ export default function TimeIntervals() {
 	async function handleSetTimeIntervals({
 		intervals,
 	}: TimeIntervalsFormOutput) {
-		// console.log("TEST ALLK");
 		await api.post("/users/time-interval", intervals);
+
+		router.push("/register/update-profile");
 	}
 
 	return (

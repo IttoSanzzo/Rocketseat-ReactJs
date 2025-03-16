@@ -1,0 +1,18 @@
+.scheduleContainer {
+	max-width: 852;
+	padding: 0 var(--sp-4);
+	margin: var(--sp-20) auto var(--sp-4);
+}
+.userHeader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	& > heading {
+		line-height: var(--lh-base);
+		margin-top: var(--sp-8);
+	}
+	& > p {
+		color: var(--cl-gray-200);
+	}
+}

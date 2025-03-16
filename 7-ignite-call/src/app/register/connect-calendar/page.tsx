@@ -14,7 +14,7 @@ import { Heading } from "@/components/DesignSystem/Heading";
 import { MultiStep } from "@/components/DesignSystem/MultiStep";
 import { ArrowRight, Check } from "phosphor-react";
 import { signIn, useSession } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 async function handleConnectCalendar() {
 	await signIn("google");
@@ -22,12 +22,17 @@ async function handleConnectCalendar() {
 
 export default function ConnectCalendar() {
 	const session = useSession();
+	const router = useRouter();
 	const isAuthenticated = session.status === "authenticated";
 	console.log(session.status);
 	const searchParams = useSearchParams();
 	const hasAuthError = !!searchParams.get("error");
 
 	console.log(session);
+
+	function handleNavigateToNextStep() {
+		router.push("http://localhost:3000/register/time-intervals");
+	}
 
 	return (
 		<ConnectCalendarContainer>
@@ -78,7 +83,7 @@ export default function ConnectCalendar() {
 
 					<Button
 						type="submit"
-						// onClick={() => signOut()}
+						onClick={handleNavigateToNextStep}
 						disabled={!isAuthenticated || hasAuthError}>
 						Próximo Passo
 						<ArrowRight />

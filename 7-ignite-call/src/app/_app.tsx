@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
+import "../lib/dayjs";
 
 interface AppProps {
 	children: ReactNode;
