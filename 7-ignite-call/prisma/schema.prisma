@@ -5,31 +5,32 @@ generator client {
   provider = "prisma-client-js"
 }
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-	id						String @id @default(uuid())
-	username			String @unique
-	name					String
-	bio						String?
-	email         String?   @unique
+	id						String		@id @default(uuid())
+	username			String		@unique
+	name					String		@db.Text
+	bio						String?		@db.Text
+	email         String?		@unique
   avatarUrl			String?
 	createdAt			DateTime @default(now())
 	accounts			Account[]
 	sessions			Session[]
 	timeIntervals	UserTimeInterval[]
+	schedules			Scheduling[]
 
 	@@map("users")
 }
 model Account {
-  id                 String    @id @default(cuid())
+  id                 String			@id @default(cuid())
   userId             String
   providerType       String
   providerId         String
   providerAccountId  String
-  refreshToken       String?
+  refreshToken       String?		@db.Text
   accessToken        String?
   accessTokenExpires DateTime?
   createdAt          DateTime  @default(now())
@@ -62,4 +63,17 @@ model UserTimeInterval {
 	userId							String
 
 	@@map("userTimeIntervals")
+}
+model Scheduling {
+	id						String		@id @default(uuid())
+	date					DateTime
+	name					String
+	email					String
+	observations	String?
+	createAt			DateTime	@default(now())
+
+	user					User			@relation(fields: [userId], references: [id])
+	userId				String
+
+	@@map("schedulings")
 }

@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { Text } from "@/components/DesignSystem/Text";
 import { Heading } from "@/components/DesignSystem/Heading";
 import ScheduleForm from "./components/ScheduleForm";
-import CalendarTimePickers from "@/components/CalendarTimePickers/index";
+import CalendarTimePickers from "@/components/Calendar/CalendarTimePickers/index";
 
 export default function Schedule() {
 	const session = useSession();

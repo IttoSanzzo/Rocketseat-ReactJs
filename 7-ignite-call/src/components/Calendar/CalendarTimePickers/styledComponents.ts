@@ -1,4 +1,4 @@
-import createComponent from "../../../libs/createComponents/createComponent";
+import createComponent from "../../../../libs/createComponents/createComponent";
 import styles from "./styles.module.css";
 
 export const CalendarTimePickersContainer = createComponent.div(

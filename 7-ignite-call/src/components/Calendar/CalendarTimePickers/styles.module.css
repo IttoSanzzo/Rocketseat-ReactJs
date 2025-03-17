@@ -14,6 +14,7 @@
 		span {
 			color: var(--cl-gray-200);
 		}
+		text-transform: capitalize;
 	}
 }
 .calendarTimePickersList {

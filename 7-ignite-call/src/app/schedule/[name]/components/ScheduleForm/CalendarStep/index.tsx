@@ -2,8 +2,8 @@
 
 import { Box } from "@/components/DesignSystem/Box";
 import Calendar from "@/components/Calendar";
+import CalendarTimePickers from "@/components/Calendar/CalendarTimePickers";
 import { CalendarStepContainer } from "./styledComponents";
-import CalendarTimePickers from "@/components/CalendarTimePickers";
 import { resolveVariants } from "@/../libs/createComponents/utils";
 import styles from "./styles.module.css";
 import { useState } from "react";
@@ -23,7 +23,7 @@ export default function CalendarStep() {
 					selectedDate={selectedDate}
 					onDateSelected={setSelectedDate}
 				/>
-				{isDateSelected && <CalendarTimePickers />}
+				{isDateSelected && <CalendarTimePickers selectedDate={selectedDate} />}
 			</Box>
 		</CalendarStepContainer>
 	);
