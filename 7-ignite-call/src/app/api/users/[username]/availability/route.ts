@@ -63,10 +63,15 @@ export async function GET(req: NextRequest, { params }: getProps) {
 		},
 	});
 
-	const availableTimes = possibleTimes.filter(
-		(time) =>
-			!blockedTimes.some((blockedTime) => blockedTime.date.getHours() === time)
-	);
+	const availableTimes = possibleTimes.filter((time) => {
+		const isTimeBlocked = blockedTimes.some(
+			(blockedTime) => blockedTime.date.getHours() === time
+		);
+
+		const isTimeInPast = referenceDate.set("hour", time).isBefore(new Date());
+
+		return !isTimeBlocked && !isTimeInPast;
+	});
 
 	return NextResponse.json({ possibleTimes, availableTimes }, { status: 200 });
 }

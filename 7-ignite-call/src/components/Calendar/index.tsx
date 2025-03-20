@@ -29,7 +29,7 @@ interface CalendarProps {
 }
 interface BlockedDates {
 	blockedWeekDays: number[];
-	blockedDatesRaw: any;
+	blockedDates: number[];
 }
 
 export default function Calendar({
@@ -56,13 +56,12 @@ export default function Calendar({
 			const response = await api.get(`/users/${username}/blocked-dates`, {
 				params: {
 					year: currentDate.get("year"),
-					month: currentDate.get("month"),
+					month: currentDate.get("month") + 1,
 				},
 			});
 			return response.data;
 		},
 	});
-	console.log(blockedDates?.blockedDatesRaw);
 
 	const calendarWeeks = useMemo(() => {
 		if (!blockedDates) return [];
@@ -90,10 +89,13 @@ export default function Calendar({
 				date,
 				disabled:
 					date.endOf("day").isBefore(new Date()) ||
-					blockedDates.blockedWeekDays.includes(date.get("day")),
+					blockedDates.blockedWeekDays.includes(date.get("day")) ||
+					blockedDates.blockedDates.includes(date.get("date")),
 			})),
 			...nextMonthFillArray.map((date) => ({ date, disabled: true })),
 		];
+
+		console.log(blockedDates.blockedDates);
 
 		const calendarWeeks = calendarDays.reduce<CalendarWeek[]>(
 			(weeks, _, index, original) => {
