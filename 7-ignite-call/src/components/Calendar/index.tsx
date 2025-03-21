@@ -95,8 +95,6 @@ export default function Calendar({
 			...nextMonthFillArray.map((date) => ({ date, disabled: true })),
 		];
 
-		console.log(blockedDates.blockedDates);
-
 		const calendarWeeks = calendarDays.reduce<CalendarWeek[]>(
 			(weeks, _, index, original) => {
 				const isNewWeek = index % 7 === 0;

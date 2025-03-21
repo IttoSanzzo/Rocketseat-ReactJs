@@ -21,6 +21,7 @@ import Image from "next/image";
 import { Avatar } from "@/components/DesignSystem/Avatar";
 import { api } from "@/lib/axios";
 import { useRouter } from "next/navigation";
+import { NextSeo } from "next-seo";
 
 const updateProfileSchema = z.object({
 	bio: z.string(),
@@ -52,45 +53,52 @@ export default function UpdateProfile() {
 	const { user } = session.data;
 
 	return (
-		<UpdateProfileContainer>
-			<Header>
-				<Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
-				<Text>
-					Precisamos de algumas informações para criar seu perfil! Ah, você pode
-					editar essas informações depois.
-				</Text>
+		<>
+			<NextSeo
+				title="Atualize seu perfil | Ignite Call"
+				noindex
+			/>
+			<UpdateProfileContainer>
+				<Header>
+					<Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
+					<Text>
+						Precisamos de algumas informações para criar seu perfil! Ah, você
+						pode editar essas informações depois.
+					</Text>
 
-				<MultiStep
-					size={4}
-					currentStep={4}
-				/>
-			</Header>
-			<ProfileBox onSubmit={handleSubmit(handleUpdateProfile)}>
-				<Box>
-					<label>
-						<Text>Foto de perfil</Text>
+					<MultiStep
+						size={4}
+						currentStep={4}
+					/>
+				</Header>
+				<ProfileBox onSubmit={handleSubmit(handleUpdateProfile)}>
+					<Box>
+						<label>
+							<Text>Foto de perfil</Text>
 
-						<Avatar
-							src={user.avatarUrl}
-							alt={user.name}
-						/>
-					</label>
-					<label>
-						<Text size="sm">Sobre você</Text>
-						<TextArea {...register("bio")} />
-						<FormAnnotation>
-							Fale um pouco sobre você. Isto será exibido em sua página pessoal.
-						</FormAnnotation>
-					</label>
+							<Avatar
+								src={user.avatarUrl}
+								alt={user.name}
+							/>
+						</label>
+						<label>
+							<Text size="sm">Sobre você</Text>
+							<TextArea {...register("bio")} />
+							<FormAnnotation>
+								Fale um pouco sobre você. Isto será exibido em sua página
+								pessoal.
+							</FormAnnotation>
+						</label>
 
-					<Button
-						type="submit"
-						disabled={isSubmitting}>
-						Finalizar
-						<ArrowRight />
-					</Button>
-				</Box>
-			</ProfileBox>
-		</UpdateProfileContainer>
+						<Button
+							type="submit"
+							disabled={isSubmitting}>
+							Finalizar
+							<ArrowRight />
+						</Button>
+					</Box>
+				</ProfileBox>
+			</UpdateProfileContainer>
+		</>
 	);
 }

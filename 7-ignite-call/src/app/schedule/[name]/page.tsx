@@ -7,6 +7,7 @@ import { Text } from "@/components/DesignSystem/Text";
 import { Heading } from "@/components/DesignSystem/Heading";
 import ScheduleForm from "./components/ScheduleForm";
 import CalendarTimePickers from "@/components/Calendar/CalendarTimePickers/index";
+import { NextSeo } from "next-seo";
 
 export default function Schedule() {
 	const session = useSession();
@@ -15,13 +16,16 @@ export default function Schedule() {
 	const { user } = session.data;
 
 	return (
-		<ScheduleContainer>
-			<UserHeader>
-				<Avatar src={user.avatarUrl} />
-				<Heading>{user.name}</Heading>
-				<Text>{user.bio}</Text>
-			</UserHeader>
-			<ScheduleForm />
-		</ScheduleContainer>
+		<>
+			<NextSeo title={`Agendar com ${user.name} | Ignite Call`} />
+			<ScheduleContainer>
+				<UserHeader>
+					<Avatar src={user.avatarUrl} />
+					<Heading>{user.name}</Heading>
+					<Text>{user.bio}</Text>
+				</UserHeader>
+				<ScheduleForm />
+			</ScheduleContainer>
+		</>
 	);
 }

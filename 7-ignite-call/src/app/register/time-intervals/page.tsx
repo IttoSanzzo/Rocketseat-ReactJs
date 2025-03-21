@@ -24,6 +24,7 @@ import { ArrowRight } from "phosphor-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/lib/axios";
 import { useRouter } from "next/navigation";
+import { NextSeo } from "next-seo";
 
 const timeIntervalsFormSchema = z.object(
 	{
@@ -138,73 +139,79 @@ export default function TimeIntervals() {
 	}
 
 	return (
-		<TimeIntervalsContainer>
-			<Header>
-				<Heading as="strong">Quase lá</Heading>
-				<Text>
-					Defina o intervalo de horários que você está disponível em cada dia da
-					semana.
-				</Text>
+		<>
+			<NextSeo
+				title="Selecione sua disponibilidade | Ignite Call"
+				noindex
+			/>
+			<TimeIntervalsContainer>
+				<Header>
+					<Heading as="strong">Quase lá</Heading>
+					<Text>
+						Defina o intervalo de horários que você está disponível em cada dia
+						da semana.
+					</Text>
 
-				<MultiStep
-					size={4}
-					currentStep={3}
-				/>
-			</Header>
-			<IntervalBox
-				// @ts-ignore
-				onSubmit={handleSubmit(handleSetTimeIntervals)}>
-				<Box>
-					<IntervalsContainer>
-						{fields.map((field, index) => {
-							return (
-								<IntervalItem key={field.id}>
-									<IntervalDay>
-										<Controller
-											name={`intervals.${index}.enabled`}
-											control={control}
-											render={({ field }) => {
-												return (
-													<Checkbox
-														onCheckedChange={(checked) => {
-															field.onChange(checked === true);
-														}}
-														checked={field.value}
-													/>
-												);
-											}}
-										/>
-										<Text>{weekDays[field.weekDay]}</Text>
-									</IntervalDay>
-									<IntervalInput>
-										<TimePicker
-											disabled={intervals[index].enabled === false}
-											{...register(`intervals.${index}.startTime`)}
-										/>
-										<TimePicker
-											disabled={intervals[index].enabled === false}
-											{...register(`intervals.${index}.endTime`)}
-										/>
-									</IntervalInput>
-								</IntervalItem>
-							);
-						})}
-					</IntervalsContainer>
+					<MultiStep
+						size={4}
+						currentStep={3}
+					/>
+				</Header>
+				<IntervalBox
+					// @ts-ignore
+					onSubmit={handleSubmit(handleSetTimeIntervals)}>
+					<Box>
+						<IntervalsContainer>
+							{fields.map((field, index) => {
+								return (
+									<IntervalItem key={field.id}>
+										<IntervalDay>
+											<Controller
+												name={`intervals.${index}.enabled`}
+												control={control}
+												render={({ field }) => {
+													return (
+														<Checkbox
+															onCheckedChange={(checked) => {
+																field.onChange(checked === true);
+															}}
+															checked={field.value}
+														/>
+													);
+												}}
+											/>
+											<Text>{weekDays[field.weekDay]}</Text>
+										</IntervalDay>
+										<IntervalInput>
+											<TimePicker
+												disabled={intervals[index].enabled === false}
+												{...register(`intervals.${index}.startTime`)}
+											/>
+											<TimePicker
+												disabled={intervals[index].enabled === false}
+												{...register(`intervals.${index}.endTime`)}
+											/>
+										</IntervalInput>
+									</IntervalItem>
+								);
+							})}
+						</IntervalsContainer>
 
-					{errors.intervals && (
-						<FormError>
-							<Text size="sm">Erro: {errors.intervals.message}</Text>
-						</FormError>
-					)}
+						{errors.intervals && (
+							<FormError>
+								<Text size="sm">Erro: {errors.intervals.message}</Text>
+							</FormError>
+						)}
 
-					<Button
-						type="submit"
-						disabled={isSubmitting}>
-						Próximo Passo
-						<ArrowRight />
-					</Button>
-				</Box>
-			</IntervalBox>
-		</TimeIntervalsContainer>
+						<Button
+							type="submit"
+							disabled={isSubmitting}>
+							Próximo Passo
+							<ArrowRight />
+						</Button>
+					</Box>
+				</IntervalBox>
+			</TimeIntervalsContainer>
+		</>
 	);
 }

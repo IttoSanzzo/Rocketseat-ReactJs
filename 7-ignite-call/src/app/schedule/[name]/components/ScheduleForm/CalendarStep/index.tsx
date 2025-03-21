@@ -8,7 +8,11 @@ import { resolveVariants } from "@/../libs/createComponents/utils";
 import styles from "./styles.module.css";
 import { useState } from "react";
 
-export default function CalendarStep() {
+interface CalendarStepProps {
+	onSelectDateTime: (date: Date) => void;
+}
+
+export default function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const isDateSelected = !!selectedDate;
 
@@ -23,7 +27,12 @@ export default function CalendarStep() {
 					selectedDate={selectedDate}
 					onDateSelected={setSelectedDate}
 				/>
-				{isDateSelected && <CalendarTimePickers selectedDate={selectedDate} />}
+				{isDateSelected && (
+					<CalendarTimePickers
+						selectedDate={selectedDate}
+						onSelectDateTime={onSelectDateTime}
+					/>
+				)}
 			</Box>
 		</CalendarStepContainer>
 	);

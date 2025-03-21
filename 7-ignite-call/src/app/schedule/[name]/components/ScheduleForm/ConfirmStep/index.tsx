@@ -13,6 +13,9 @@ import { Box } from "@/components/DesignSystem/Box";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import dayjs from "dayjs";
+import { api } from "@/lib/axios";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 const confirmFormSchema = z.object({
 	name: z
@@ -24,7 +27,19 @@ const confirmFormSchema = z.object({
 
 type ConfirmFormData = z.infer<typeof confirmFormSchema>;
 
-export default function ConfirmStep() {
+interface ConfirmStepProps {
+	schedulingDate: Date;
+	onCancelConfirmation: () => void;
+}
+
+export default function ConfirmStep({
+	schedulingDate,
+	onCancelConfirmation,
+}: ConfirmStepProps) {
+	const router = useRouter();
+	const params = useParams();
+	const username = params.name;
+
 	const {
 		register,
 		handleSubmit,
@@ -33,9 +48,21 @@ export default function ConfirmStep() {
 		resolver: zodResolver(confirmFormSchema),
 	});
 
-	function handleConfirmScheduling(data: ConfirmFormData) {
-		console.log(data);
+	async function handleConfirmScheduling(data: ConfirmFormData) {
+		const { name, email, observations } = data;
+
+		await api.post(`/users/${username}/schedule`, {
+			name,
+			email,
+			observations,
+			date: schedulingDate,
+		});
+
+		onCancelConfirmation();
 	}
+
+	const describedDate = dayjs(schedulingDate).format("DD[ de ]MMMM[ de ]YYYY");
+	const describedTime = dayjs(schedulingDate).format("HH:mm[h]");
 
 	return (
 		<ConfirmStepContainer onSubmit={handleSubmit(handleConfirmScheduling)}>
@@ -43,11 +70,11 @@ export default function ConfirmStep() {
 				<FormHeader>
 					<Text>
 						<CalendarBlank />
-						22 de Setembro de 2025
+						{describedDate}
 					</Text>
 					<Text>
 						<Clock />
-						28:00h
+						{describedTime}
 					</Text>
 				</FormHeader>
 
@@ -85,6 +112,7 @@ export default function ConfirmStep() {
 					<Button
 						type="button"
 						variant="tertiary "
+						onClick={onCancelConfirmation}
 						disabled={isSubmitting}>
 						Cancelar
 					</Button>

@@ -20,7 +20,7 @@ interface accountProps {
 	type: string;
 	provider: string;
 	providerAccountId: string;
-	refreshToken?: string;
+	refresh_token?: string;
 	access_token?: string;
 	expires_at?: any;
 	createdAt: any;
@@ -164,7 +164,7 @@ export async function PrismaAdapter(
 					providerType: account.type,
 					providerId: account.provider,
 					providerAccountId: account.providerAccountId,
-					refreshToken: account.refreshToken || null,
+					refreshToken: account.refresh_token || null,
 					accessToken: account.access_token || null,
 					accessTokenExpires: accessTokenExpires || null,
 					id: account.id || undefined,

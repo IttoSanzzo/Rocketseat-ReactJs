@@ -14,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 
 interface calendarTimePickersProps {
 	selectedDate: Date | null;
+	onSelectDateTime: (date: Date) => void;
 }
 
 interface availability {
@@ -23,6 +24,7 @@ interface availability {
 
 export default function CalendarTimePickers({
 	selectedDate,
+	onSelectDateTime,
 }: calendarTimePickersProps) {
 	const params = useParams();
 	const username = params.name;
@@ -49,6 +51,15 @@ export default function CalendarTimePickers({
 		enabled: !!selectedDate,
 	});
 
+	function handleSelectTime(hour: number) {
+		const dateWithTime = dayjs(selectedDate)
+			.set("hour", hour)
+			.startOf("hour")
+			.toDate();
+
+		onSelectDateTime(dateWithTime);
+	}
+
 	return (
 		<CalendarTimePickersContainer>
 			<CalendarTimePickerHeader>
@@ -60,6 +71,7 @@ export default function CalendarTimePickers({
 				{availability?.possibleTimes.map((hour) => (
 					<CalendarTimePickerItem
 						key={hour}
+						onClick={() => handleSelectTime(hour)}
 						disabled={!availability.availableTimes.includes(hour)}>
 						{String(hour).padStart(2, "0")}:00h
 					</CalendarTimePickerItem>
